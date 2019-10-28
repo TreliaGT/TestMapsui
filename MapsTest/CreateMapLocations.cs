@@ -38,7 +38,7 @@ namespace MapsTest
             // Set the center of the viewport to the coordinate. The UI will refresh automatically
            map.NavigateTo(sphericalMercatorCoordinate);
             // Additionally you might want to set the resolution, this could depend on your specific purpose
-           map.NavigateTo(map.Resolutions[5]);
+           map.NavigateTo(map.Resolutions[7]);
 
             CreatePointer();
             return map;
