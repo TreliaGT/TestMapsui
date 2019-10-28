@@ -73,7 +73,7 @@ namespace MapsTest
         {
             List<StopsLocations> list = new List<StopsLocations>();
             list.Add(new StopsLocations("someday", 115.85713, -31.95496));
-            list.Add(new StopsLocations("someday", 115.859821, -31.958627));
+            list.Add(new StopsLocations("something", 115.859821, -31.958627));
             var cities = list;
 
             return cities.Select(c =>
