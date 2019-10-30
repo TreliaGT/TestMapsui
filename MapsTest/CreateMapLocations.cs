@@ -107,7 +107,7 @@ namespace MapsTest
             });
             map.InfoLayers.Add(new MemoryLayer
             {
-                Name = "stopInfo",
+                Name = "StopInfo",
                 DataSource = new MemoryProvider(GetStops()),
                 Style = new SymbolStyle
                 {

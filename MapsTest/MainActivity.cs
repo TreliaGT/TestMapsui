@@ -35,28 +35,22 @@ namespace MapsTest
             mapControl.Map = new CreateMapLocations(this).CreateMap();
             //mapControl.Map = map;
 
-            map.Info += ShowStop;
+            mapControl.Map.Info += StopInfo;
         }
 
         
 
-        public void ShowStop(object sender, MapInfoEventArgs e)
+        public void StopInfo(object sender, MapInfoEventArgs e)
         {
 
             if (e.MapInfo.Feature != null)
             {
                 RunOnUiThread(new Runnable(Toast.MakeText(
-                                    ApplicationContext,
-                                    "You pressed something!",
-                                    ToastLength.Short).Show));
+                                  ApplicationContext,
+                                  e.MapInfo.Feature?["Label"]?.ToString(),
+                                  ToastLength.Short).Show));
             }
-            else
-            {
-                RunOnUiThread(new Runnable(Toast.MakeText(
-                                    ApplicationContext,
-                                    "You pressed nothing",
-                                    ToastLength.Short).Show));
-            }
+          
         }
     }
 }
