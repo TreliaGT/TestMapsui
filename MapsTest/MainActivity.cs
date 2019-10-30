@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Mapsui.Layers;
 using Mapsui.UI;
 using System;
+using Java.Lang;
 
 namespace MapsTest
 {
@@ -34,15 +35,28 @@ namespace MapsTest
             mapControl.Map = new CreateMapLocations(this).CreateMap();
             //mapControl.Map = map;
 
-            map.Info += DoStuff_OnInfo;
+            map.Info += ShowStop;
         }
 
         
 
-        public void DoStuff_OnInfo(object sender, MapInfoEventArgs e)
+        public void ShowStop(object sender, MapInfoEventArgs e)
         {
-          string name =  e.MapInfo.Feature?["name"]?.ToString();
-            Console.WriteLine(name);
+
+            if (e.MapInfo.Feature != null)
+            {
+                RunOnUiThread(new Runnable(Toast.MakeText(
+                                    ApplicationContext,
+                                    "You pressed something!",
+                                    ToastLength.Short).Show));
+            }
+            else
+            {
+                RunOnUiThread(new Runnable(Toast.MakeText(
+                                    ApplicationContext,
+                                    "You pressed nothing",
+                                    ToastLength.Short).Show));
+            }
         }
     }
 }

@@ -91,14 +91,31 @@ namespace MapsTest
 
         private void LoadPoints()
         {
-           // MapControl mapControl = null;// Get MapControl element here.
+            // MapControl mapControl = null;// Get MapControl element here.
             //var map = new Map();
-           // map.Layers.Add(OpenStreetMap.CreateTileLayer());
+            // map.Layers.Add(OpenStreetMap.CreateTileLayer());
+
+            var bitmap = ((BitmapDrawable)con.Resources.GetDrawable(Resource.Drawable.info, con.Theme)).Bitmap;
+
+            Stream stream = new MemoryStream();
+            bitmap.Compress(Android.Graphics.Bitmap.CompressFormat.Png, 0, stream);
             map.Layers.Add(new MemoryLayer
             {
                 Style = null,
                 // Get all the stops as features and set it as the data source.
                 DataSource = new MemoryProvider(GetStops())
+            });
+            map.InfoLayers.Add(new MemoryLayer
+            {
+                Name = "stopInfo",
+                DataSource = new MemoryProvider(GetStops()),
+                Style = new SymbolStyle
+                {
+                    BitmapId = BitmapRegistry.Instance.Register(stream),
+                    SymbolOffset = new Offset(0f, 0f),
+
+                    SymbolScale = 0.3
+                }
             });
         }
 
