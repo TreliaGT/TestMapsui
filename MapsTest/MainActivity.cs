@@ -8,6 +8,13 @@ using Mapsui;
 using Mapsui.UI.Android;
 using Android.Graphics.Drawables;
 using Mapsui.Projection;
+using Mapsui.Providers;
+using Mapsui.Styles;
+using System.Collections.Generic;
+using Mapsui.Layers;
+using Mapsui.UI;
+using System;
+using Java.Lang;
 
 namespace MapsTest
 {
@@ -27,8 +34,23 @@ namespace MapsTest
             
             mapControl.Map = new CreateMapLocations(this).CreateMap();
             //mapControl.Map = map;
-       
 
+            mapControl.Map.Info += StopInfo;
+        }
+
+        
+
+        public void StopInfo(object sender, MapInfoEventArgs e)
+        {
+
+            if (e.MapInfo.Feature != null)
+            {
+                RunOnUiThread(new Runnable(Toast.MakeText(
+                                  ApplicationContext,
+                                  e.MapInfo.Feature?["Label"]?.ToString(),
+                                  ToastLength.Short).Show));
+            }
+          
         }
     }
 }
