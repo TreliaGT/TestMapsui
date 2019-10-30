@@ -40,23 +40,23 @@ namespace MapsTest
             map.NavigateTo(sphericalMercatorCoordinate);
             // Additionally you might want to set the resolution, this could depend on your specific purpose
             map.NavigateTo(map.Resolutions[7]);
-            //LoadPoints();
-           CreatePointer();
+            LoadPoints();
+           //CreatePointer();
             return map;
         }
 
 
 
-        public void CreatePointer()
+     /*   public void CreatePointer()
         {
             var bitmap = ((BitmapDrawable)con.Resources.GetDrawable(Resource.Drawable.info, con.Theme)).Bitmap;
 
             Stream stream = new MemoryStream();
             bitmap.Compress(Android.Graphics.Bitmap.CompressFormat.Png, 0, stream);
 
-            map.Layers.Add(new MemoryLayer
+            map.Layers.Add(new CreateInfoLayer
             {
-
+                IsMapInfoLayer = true,
                 DataSource = new MemoryProvider(GetStops()),
                 Style = new SymbolStyle
                 {
@@ -70,7 +70,7 @@ namespace MapsTest
         }
 
 
-        private static IEnumerable<IFeature> GetStops()
+       private static IEnumerable<IFeature> GetStops()
         {
             List<StopsLocations> list = new List<StopsLocations>();
             list.Add(new StopsLocations("someday", 115.85713, -31.95496));
@@ -87,13 +87,13 @@ namespace MapsTest
                 feature.Styles.Add(new LabelStyle { Text = c.Name });
                 return feature;
             });
-        }
+        }*/
 
-        private static void LoadPoints()
+        private void LoadPoints()
         {
-            MapControl mapControl = null;// Get MapControl element here.
-            var map = new Map();
-            map.Layers.Add(OpenStreetMap.CreateTileLayer());
+           // MapControl mapControl = null;// Get MapControl element here.
+            //var map = new Map();
+           // map.Layers.Add(OpenStreetMap.CreateTileLayer());
             map.Layers.Add(new MemoryLayer
             {
                 Style = null,
@@ -102,7 +102,7 @@ namespace MapsTest
             });
         }
 
-    /*   private static Features GetStops()
+      private static Features GetStops()
         {
             // Prepare a features variable, and build the data to populate it.
             var features = new Features();
@@ -130,6 +130,6 @@ namespace MapsTest
             }
             // Return the features.
             return features;
-        }*/
+        }
     }
 }

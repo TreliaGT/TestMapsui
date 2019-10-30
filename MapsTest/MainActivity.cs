@@ -13,6 +13,7 @@ using Mapsui.Styles;
 using System.Collections.Generic;
 using Mapsui.Layers;
 using Mapsui.UI;
+using System;
 
 namespace MapsTest
 {
@@ -40,7 +41,8 @@ namespace MapsTest
 
         public void DoStuff_OnInfo(object sender, MapInfoEventArgs e)
         {
-          //  e.MapInfo.Feature.
+          string name =  e.MapInfo.Feature?["name"]?.ToString();
+            Console.WriteLine(name);
         }
     }
 }
